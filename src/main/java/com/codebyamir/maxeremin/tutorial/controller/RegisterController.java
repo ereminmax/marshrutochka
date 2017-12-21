@@ -1,11 +1,9 @@
 package com.codebyamir.maxeremin.tutorial.controller;
 
-import com.codebyamir.maxeremin.tutorial.model.StartStation;
-import com.codebyamir.maxeremin.tutorial.model.StopStation;
+import com.codebyamir.maxeremin.tutorial.model.Station;
 import com.codebyamir.maxeremin.tutorial.model.User;
 import com.codebyamir.maxeremin.tutorial.service.EmailService;
-import com.codebyamir.maxeremin.tutorial.service.StartStationService;
-import com.codebyamir.maxeremin.tutorial.service.StopStationService;
+import com.codebyamir.maxeremin.tutorial.service.StationService;
 import com.codebyamir.maxeremin.tutorial.service.UserService;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
@@ -33,32 +31,28 @@ public class RegisterController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private UserService userService;
     private EmailService emailService;
-    private StartStationService startStationService;
-    private StopStationService stopStationService;
+    private StationService stationService;
 
     @Autowired
     public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService, EmailService emailService,
-                              StartStationService startStationService, StopStationService stopStationService) {
+                              StationService stationService) {
 
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userService = userService;
         this.emailService = emailService;
-        this.startStationService = startStationService;
-        this.stopStationService = stopStationService;
+        this.stationService = stationService;
     }
 
     // Return the home page with a startStation list
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView showHomePage(ModelAndView modelAndView, StartStation startStation) {
-        modelAndView.addObject("startStationList", startStationService.findAll());
-        Iterable<StopStation> stopStations = stopStationService.findAll();
-        modelAndView.addObject("stopStationList", stopStations);
+    public ModelAndView showHomePage(ModelAndView modelAndView) {
+        modelAndView.addObject("stationList", stationService.findAll());
         modelAndView.setViewName("index");
         return modelAndView;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView showLoginForm(ModelAndView modelAndView, StartStation startStation) {
+    public ModelAndView showLoginForm(ModelAndView modelAndView) {
         modelAndView.setViewName("page_login1");
         return modelAndView;
     }

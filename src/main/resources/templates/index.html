@@ -291,7 +291,7 @@
                                 <label class="label">Пункт отправления</label>
                                 <label class="select">
                                     <select name="startPoint">
-                                        <option th:each="startStation : ${startStationList}" value="0" th:value="${startStation.id}" th:text="${startStation.name}" selected>Reservation date</option>
+                                        <option th:each="station : ${stationList}" value="0" th:value="${station.id}" th:text="${station.name}" selected>Reservation date</option>
                                     </select>
                                     <i></i>
                                 </label>
@@ -301,7 +301,7 @@
                                 <label class="label">Пункт назначения</label>
                                 <label class="select">
                                     <select name="endPoint">
-                                        <option th:each="stopStation : ${stopStationList}" value="0" th:value="${stopStation.id}" th:text="${stopStation.name}" selected>Reservation date</option>
+                                        <option th:each="station : ${stationList}" value="0" th:value="${station.id}" th:text="${station.name}" selected>Reservation date</option>
                                     </select>
                                     <i></i>
                                 </label>

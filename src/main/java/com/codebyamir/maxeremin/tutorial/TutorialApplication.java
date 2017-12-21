@@ -1,11 +1,7 @@
 package com.codebyamir.maxeremin.tutorial;
 
-import com.codebyamir.maxeremin.tutorial.model.StartStation;
 import com.codebyamir.maxeremin.tutorial.model.Station;
-import com.codebyamir.maxeremin.tutorial.model.StopStation;
-import com.codebyamir.maxeremin.tutorial.service.StartStationService;
 import com.codebyamir.maxeremin.tutorial.service.StationService;
-import com.codebyamir.maxeremin.tutorial.service.StopStationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,11 +14,6 @@ import java.util.LinkedHashSet;
 @SpringBootApplication
 @Slf4j
 public class TutorialApplication implements CommandLineRunner{
-	@Autowired
-	private StartStationService startStationService;
-
-	@Autowired
-    private StopStationService stopStationService;
 
 	@Autowired
 	private StationService stationService;
