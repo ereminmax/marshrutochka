@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Registration | Unify - Responsive Website Template</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Account registration">
+	<meta name="author" content="Maxim Eremin">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/shop.style.css">
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/headers/header-v5.css">
+	<link rel="stylesheet" href="css/footers/footer-v4.css">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="plugins/animate.css">
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+
+	<!-- CSS Page Styles -->
+	<link rel="stylesheet" href="css/pages/log-reg-v3.css">
+
+	<!-- Style Switcher -->
+	<link rel="stylesheet" href="css/plugins/style-switcher.css">
+
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/theme-colors/default.css" id="style_color">
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body class="header-fixed">
+
+	<div class="wrapper">
+		<!--=== Header v5 ===-->
+		<div class="header-v5 header-static">
+			<!-- Topbar v3 -->
+			<div class="topbar-v3">
+				<div class="search-open">
+					<div class="container">
+						<input type="text" class="form-control" placeholder="Search">
+						<div class="search-close"><i class="icon-close"></i></div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6">
+							<!-- Topbar Navigation -->
+						</div>
+						<div class="col-sm-6">
+							<ul class="list-inline right-topbar pull-right">
+								<li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/trip}">Account</a></li>
+								<li sec:authorize="isAnonymous()"><a href="shop-ui-login.html" th:href="@{/login}">Login</a> | <a href="shop-ui-register.html" th:href="@{/register}">Register</a></li>
+							</ul>
+						</div>
+					</div>
+				</div><!--/container-->
+			</div>
+			<!-- End Topbar v3 -->
+
+			<!-- Navbar -->
+			<div class="navbar navbar-default mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html">
+							<img id="logo-header" src="img/logo.png" alt="Logo">
+						</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<!-- Nav Menu -->
+						<ul class="nav navbar-nav">
+							<!-- Pages -->
+							<li class="dropdown active">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+									Pages
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="index.html">Shop UI</a></li>
+									<li><a href="shop-ui-inner.html">Product Page</a></li>
+									<li><a href="shop-ui-filter-grid.html">Filter Grid Page</a></li>
+									<li><a href="shop-ui-filter-list.html">Filter List Page</a></li>
+									<li><a href="shop-ui-add-to-cart.html">Checkout</a></li>
+									<li><a href="shop-ui-login.html">Login</a></li>
+									<li class="active"><a href="shop-ui-register.html">Register</a></li>
+								</ul>
+							</li>
+							<!-- End Pages -->
+
+							<!-- Promotion -->
+							<li class="dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+									Promotion
+								</a>
+								<ul class="dropdown-menu">
+									<li class="dropdown-submenu">
+										<a href="javascript:void(0);">Jeans</a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Skinny Jeans</a></li>
+											<li><a href="#">Bootcut Jeans</a></li>
+											<li><a href="#">Straight Cut Jeans</a></li>
+										</ul>
+									</li>
+									<li class="dropdown-submenu">
+										<a href="javascript:void(0);">Shoes</a>
+										<ul class="dropdown-menu">
+											<li><a href="#">Sandals</a></li>
+											<li><a href="#">Heels</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<!-- End Promotion -->
+
+							<!-- Gifts -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+									Gifts
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<div class="mega-menu-content">
+											<div class="container">
+												<div class="row">
+													<div class="col-md-3 col-sm-12 col-xs-12 md-margin-bottom-30">
+														<h3 class="mega-menu-heading">Pellentes que nec diam lectus</h3>
+														<p>Proin pulvinar libero quis auctor pharet ra. Aenean fermentum met us orci, sedf eugiat augue pulvina r vitae. Nulla dolor nisl, molestie nec aliquam vitae, gravida sodals dolor...</p>
+														<button type="button" class="btn-u btn-u-dark">Read More</button>
+													</div>
+													<div class="col-md-3 col-sm-4 col-xs-4 md-margin-bottom-30">
+														<a href="#"><img class="product-offers img-responsive" src="img/blog/01.jpg" alt=""></a>
+													</div>
+													<div class="col-md-3 col-sm-4 col-xs-4 sm-margin-bottom-30">
+														<a href="#"><img class="product-offers img-responsive" src="img/blog/02.jpg" alt=""></a>
+													</div>
+													<div class="col-md-3 col-sm-4 col-xs-4">
+														<a href="#"><img class="product-offers img-responsive" src="img/blog/03.jpg" alt=""></a>
+													</div>
+												</div><!--/end row-->
+											</div><!--/end container-->
+										</div><!--/end mega menu content-->
+									</li>
+								</ul><!--/end dropdown-menu-->
+							</li>
+							<!-- End Gifts -->
+
+							<!-- Books -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+									Books
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<div class="mega-menu-content">
+											<div class="container">
+												<div class="row">
+													<div class="col-md-2 col-sm-6">
+														<h3 class="mega-menu-heading">Clothe</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">New in</a></li>
+															<li><a href="#">Coats &amp; Jackets</a></li>
+															<li><a href="#">Jeans</a></li>
+															<li><a href="#">Dresses</a></li>
+															<li><a href="#">Shorts</a> <span class="label label-danger-shop">New</span></li>
+															<li><a href="#">Skirts</a></li>
+															<li><a href="#">T-Shirts</a></li>
+														</ul>
+														<h3 class="mega-menu-heading">Shoes</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">Boots</a></li>
+															<li><a href="#">FLats</a></li>
+															<li><a href="#">Heels</a></li>
+															<li><a href="#">Sandals</a></li>
+															<li><a href="#">Sports</a></li>
+														</ul>
+													</div>
+
+													<div class="col-md-2 col-sm-6">
+														<h3 class="mega-menu-heading">Accessories</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">All accessories</a></li>
+															<li><a href="#">Bags &amp; Purses</a></li>
+															<li><a href="#">Scarvs &amp; Hats</a></li>
+															<li><a href="#">Jewellery</a></li>
+															<li><a href="#">Fragrance &amp; Beauty</a></li>
+														</ul>
+														<h3 class="mega-menu-heading">Lingerie</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">Linger</a> <span class="label label-danger-shop">New</span></li>
+															<li><a href="#">Slippers</a></li>
+														</ul>
+														<h3 class="mega-menu-heading">Nightwear</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">Nightwear</a></li>
+															<li><a href="#">Socks</a></li>
+															<li><a href="#">Tights</a></li>
+														</ul>
+													</div>
+
+													<div class="col-md-2 col-sm-6">
+														<h3 class="mega-menu-heading">Mixed</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">New in</a></li>
+															<li><a href="#">Coats &amp; Jackets</a> <span class="label label-danger-shop">New</span></li>
+															<li><a href="#">Jeans</a></li>
+															<li><a href="#">Dresses</a></li>
+															<li><a href="#">Shorts</a></li>
+															<li><a href="#">Skirts</a></li>
+															<li><a href="#">T-shirts</a></li>
+															<li><a href="#">Boots</a></li>
+															<li><a href="#">Flats</a></li>
+															<li><a href="#">Heels</a></li>
+															<li><a href="#">Sandals</a></li>
+															<li><a href="#">Sports</a></li>
+															<li><a href="#">Socks</a></li>
+															<li><a href="#">Tights</a></li>
+														</ul>
+													</div>
+
+													<div class="col-md-2 col-sm-6">
+														<h3 class="mega-menu-heading">Clothe</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">New in</a></li>
+															<li><a href="#">Coats &amp; Jackets</a></li>
+															<li><a href="#">Jeans</a></li>
+															<li><a href="#">Dresses</a></li>
+															<li><a href="#">Shorts</a> <span class="label label-danger-shop">New</span></li>
+															<li><a href="#">Skirts</a></li>
+															<li><a href="#">T-shirts</a></li>
+														</ul>
+														<h3 class="mega-menu-heading">Shoes</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">Boots</a></li>
+															<li><a href="#">Flats</a></li>
+															<li><a href="#">Heels</a></li>
+															<li><a href="#">Sandals</a></li>
+															<li><a href="#">Sports</a></li>
+														</ul>
+													</div>
+
+													<div class="col-md-2 col-sm-6">
+														<h3 class="mega-menu-heading">Accessories</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">All accessories</a></li>
+															<li><a href="#">Bags &amp; Purses</a></li>
+															<li><a href="#">Scarvs &amp; Hats</a></li>
+															<li><a href="#">Jewellery</a></li>
+															<li><a href="#">Fragrance &amp; Beauty</a></li>
+														</ul>
+														<h3 class="mega-menu-heading">Lingerie</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">Linger</a> <span class="label label-danger-shop">New</span></li>
+															<li><a href="#">Slippers</a></li>
+														</ul>
+														<h3 class="mega-menu-heading">Nightwear</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">Nightwear</a></li>
+															<li><a href="#">Socks</a></li>
+															<li><a href="#">Tights</a></li>
+														</ul>
+													</div>
+
+													<div class="col-md-2 col-sm-6">
+														<h3 class="mega-menu-heading">Mixed</h3>
+														<ul class="list-unstyled style-list">
+															<li><a href="#">New in</a></li>
+															<li><a href="#">Coats &amp; Jackets</a> <span class="label label-danger-shop">New</span></li>
+															<li><a href="#">Jeans</a></li>
+															<li><a href="#">Dresses</a></li>
+															<li><a href="#">Shorts</a></li>
+															<li><a href="#">Skirts</a></li>
+															<li><a href="#">T-shirts</a></li>
+															<li><a href="#">Boots</a></li>
+															<li><a href="#">Flats</a></li>
+															<li><a href="#">Heels</a></li>
+															<li><a href="#">Sandals</a></li>
+															<li><a href="#">Sports</a></li>
+															<li><a href="#">Socks</a></li>
+															<li><a href="#">Tights</a> <span class="label label-danger-shop">New</span></li>
+														</ul>
+													</div>
+												</div><!--/end row-->
+											</div><!--/end container-->
+										</div><!--/end mega menu content-->
+									</li>
+								</ul><!--/end dropdown-menu-->
+							</li>
+							<!-- End Books -->
+
+							<!-- Clothes -->
+							<li class="dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-delay="1000">
+									Clothes
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Jeans</a></li>
+									<li><a href="#">T-shirts</a></li>
+									<li><a href="#">Shorts</a></li>
+								</ul>
+							</li>
+							<!-- End Clothes -->
+
+							<!-- Main Demo -->
+							<li><a href="../index.html">Main Demo</a></li>
+							<!-- Main Demo -->
+						</ul>
+						<!-- End Nav Menu -->
+					</div>
+				</div>
+			</div>
+			<!-- End Navbar -->
+		</div>
+		<!--=== End Header v5 ===-->
+
+		<!--=== Breadcrumbs v4 ===-->
+		<div class="breadcrumbs-v4">
+			<div class="container">
+				<span class="page-name">Log In</span>
+				<h1>Maecenas <span class="shop-green">enim</span> sapien</h1>
+				<ul class="breadcrumb-v4-in">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="">Product</a></li>
+					<li class="active">Log In</li>
+				</ul>
+			</div><!--/end container-->
+		</div>
+		<!--=== End Breadcrumbs v4 ===-->
+
+		<!--=== Registre ===-->
+		<div class="log-reg-v3 content-md margin-bottom-30">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 md-margin-bottom-50">
+						<h2 class="welcome-title">Welcome to Unify</h2>
+						<p>Suspendisse et tincidunt ipsum, et dignissim urna. Vestibulum nisl tortor, gravida at magna et, suscipit vehicula massa.</p><br>
+						<div class="row margin-bottom-50">
+							<div class="col-sm-4 md-margin-bottom-20">
+								<div class="site-statistics">
+									<span>20,039</span>
+									<small>Products</small>
+								</div>
+							</div>
+							<div class="col-sm-4 md-margin-bottom-20">
+								<div class="site-statistics">
+									<span>54,283</span>
+									<small>Reviews</small>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="site-statistics">
+									<span>376k</span>
+									<small>Sale</small>
+								</div>
+							</div>
+						</div>
+						<div class="members-number">
+							<h3>Join more than <span class="shop-green">13,000</span> members worldwide</h3>
+							<img class="img-responsive" src="img/map.png" alt="">
+						</div>
+					</div>
+
+					<div class="col-md-5">
+						<form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" role="form" data-toggle="validator" id="sky-form4" class="log-reg-block sky-form">
+							<h2>Create New Account</h2>
+
+							<div th:if="${confirmationMessage}" class="alert alert-success"
+								 role="alert" th:text=${confirmationMessage}></div>
+
+							<div th:if="${errorMessage}"
+								 class="alert alert-danger" role="alert"
+								 th:text="${errorMessage}"></div>
+
+
+							<div th:if="${#fields.hasErrors('firstName')}"
+								 th:errors="*{firstName}"
+								 class="validation-message alert alert-danger" role="alert"></div>
+
+							<div th:if="${#fields.hasErrors('lastName')}"
+								 th:errors="*{lastName}"
+								 class="validation-message alert alert-danger" role="alert"></div>
+
+							<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								 class="validation-message alert alert-danger" role="alert"></div>
+
+							<div class="form-group input-group has-feedback">
+
+
+							<div class="login-input reg-input">
+								<div class="row">
+									<div class="col-sm-6">
+										<section>
+											<label class="input">
+												<input type="text" th:field="*{firstName}" name="firstname" placeholder="First name" class="form-control" required>
+											</label>
+										</section>
+									</div>
+									<div class="col-sm-6">
+										<section>
+											<label class="input">
+												<input type="text" name="lastname" th:field="*{lastName}" placeholder="Last name" class="form-control" required>
+											</label>
+										</section>
+									</div>
+								</div>
+								<section>
+									<label class="input">
+										<input type="email" th:field="*{email}" name="email" placeholder="Email address" class="form-control" data-error="This email address is invalid" required>
+									</label>
+								</section>
+							</div>
+							<button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Create Account</button>
+						</form>
+
+						<div class="margin-bottom-20"></div>
+						<p class="text-center">Already you have an account? <a href="shop-ui-login.html" th:href="@{/login}">Sign In</a></p>
+					</div>
+				</div><!--/end row-->
+			</div><!--/end container-->
+		</div>
+		<!--=== End Registre ===-->
+
+		<!--=== Shop Suvbscribe ===-->
+		<div class="shop-subscribe">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 md-margin-bottom-20">
+						<h2>subscribe to our weekly <strong>newsletter</strong></h2>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Email your email...">
+							<span class="input-group-btn">
+								<button class="btn" type="button"><i class="fa fa-envelope-o"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div><!--/end container-->
+		</div>
+		<!--=== End Shop Suvbscribe ===-->
+
+		<!--=== Footer v4 ===-->
+		<div class="footer-v4">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<!-- About -->
+						<div class="col-md-4 md-margin-bottom-40">
+							<a href="index.html"><img class="footer-logo" src="img/logo-2.png" alt=""></a>
+							<p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
+							<br>
+							<ul class="list-unstyled address-list margin-bottom-20">
+								<li><i class="fa fa-angle-right"></i>California, US, Lorem Lis Street, Orange, 25</li>
+								<li><i class="fa fa-angle-right"></i>Phone: 800 123 3456</li>
+								<li><i class="fa fa-angle-right"></i>Fax: 800 123 3456</li>
+								<li><i class="fa fa-angle-right"></i>Email: info@anybiz.co</li>
+							</ul>
+
+							<ul class="list-inline shop-social">
+								<li><a href="#"><i class="fb rounded-md fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="tw rounded-md fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="gp rounded-md fa fa-google-plus"></i></a></li>
+								<li><a href="#"><i class="yt rounded-md fa fa-youtube"></i></a></li>
+							</ul>
+						</div>
+						<!-- End About -->
+
+						<!-- Simple List -->
+						<div class="col-md-2 col-sm-3">
+							<div class="row">
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Secciones</h2>
+									<ul class="list-unstyled simple-list margin-bottom-20">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li><a href="#">Documentos </a></li>
+										<li><a href="#">Francisco papa</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Temas</h2>
+									<ul class="list-unstyled simple-list">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li><a href="#">Documentos </a></li>
+										<li><a href="#">Francisco papa</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-2 col-sm-3">
+							<div class="row">
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Utilidades</h2>
+									<ul class="list-unstyled simple-list margin-bottom-20">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li><a href="#">Documentos </a></li>
+										<li>...</li>
+									</ul>
+								</div>
+
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Documentos</h2>
+									<ul class="list-unstyled simple-list">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li><a href="#">Documentos </a></li>
+										<li><a href="#">Francisco papa</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-2 col-sm-3">
+							<div class="row">
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Publicidad</h2>
+									<ul class="list-unstyled simple-list margin-bottom-20">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li><a href="#">Documentos </a></li>
+										<li><a href="#">Francisco papa</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Contacto</h2>
+									<ul class="list-unstyled simple-list">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li><a href="#">Documentos </a></li>
+										<li><a href="#">Francisco papa</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-2 col-sm-3">
+							<div class="row">
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Utilidades</h2>
+									<ul class="list-unstyled simple-list margin-bottom-20">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+
+								<div class="col-sm-12 col-xs-6">
+									<h2 class="thumb-headline">Documentos</h2>
+									<ul class="list-unstyled simple-list">
+										<li><a href="#">Ultima Hora</a></li>
+										<li><a href="#">Exclusiva</a></li>
+										<li>...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- End Simple List -->
+					</div><!--/end row-->
+				</div><!--/end continer-->
+			</div><!--/footer-->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2014 &copy; Unify. ALL Rights Reserved.
+								<a target="_blank" href="https://twitter.com/htmlstream">Htmlstream</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<ul class="list-inline sponsors-icons pull-right">
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div><!--/copyright-->
+		</div>
+		<!--=== End Footer v4 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script src="plugins/back-to-top.js"></script>
+	<script src="plugins/smoothScroll.js"></script>
+	<script src="plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+	<script src="plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- JS Customization -->
+	<script src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script src="js/shop.app.js"></script>
+	<script src="js/plugins/style-switcher.js"></script>
+	<script src="js/forms/page_registration.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			App.init();
+			App.initScrollBar();
+			Registration.initRegistration();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+	<!-- Bootstrap Validator plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+
+	<!--[if lt IE 9]>
+	<script src="plugins/respond.js"></script>
+	<script src="plugins/html5shiv.js"></script>
+	<script src="js/plugins/placeholder-IE-fixes.js"></script>
+	<script src="plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+	<![endif]-->
+<!--[if lt IE 10]>
+	<script src="plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+	<![endif]-->
+
+</body>
+</html>
