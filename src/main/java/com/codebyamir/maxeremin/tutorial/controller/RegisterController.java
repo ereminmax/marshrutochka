@@ -1,5 +1,6 @@
 package com.codebyamir.maxeremin.tutorial.controller;
 
+import com.codebyamir.maxeremin.tutorial.model.Route;
 import com.codebyamir.maxeremin.tutorial.model.Station;
 import com.codebyamir.maxeremin.tutorial.model.User;
 import com.codebyamir.maxeremin.tutorial.service.EmailService;
@@ -45,7 +46,8 @@ public class RegisterController {
 
     // Return the home page with a startStation list
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView showHomePage(ModelAndView modelAndView) {
+    public ModelAndView showHomePage(ModelAndView modelAndView, Route route) {
+        modelAndView.addObject("route", route);
         modelAndView.addObject("stationList", stationService.findAll());
         modelAndView.setViewName("index");
         return modelAndView;
@@ -58,17 +60,66 @@ public class RegisterController {
     }
 
     // Find a route
-    @RequestMapping(value = "/trip", method = RequestMethod.GET)
+    @RequestMapping(value = "/route", method = RequestMethod.GET)
     public ModelAndView showFindRouteForm(ModelAndView modelAndView) {
 
         return modelAndView;
     }
 
     // Show trip
-    @RequestMapping(value = "/trip", method = RequestMethod.POST)
-    public ModelAndView processFindRouteForm(ModelAndView modelAndView) {
+    @RequestMapping(value = "/route", method = RequestMethod.POST)
+    public ModelAndView processFindRouteForm(ModelAndView modelAndView, @Valid Route route) {
+        if (route.getNumberOfSeats() < 0) {
+            modelAndView.addObject("error", "Oops!  You can't define a non-positive amount of passengers");
+            modelAndView.setViewName("route");
+            return modelAndView;
+        }
 
+        Station fromStation = stationService.findById(route.getFromStationName());
+        Station toStation = stationService.findById(route.getToStationName());
+
+        double distance = distance(fromStation.getX(), fromStation.getY(), toStation.getX(), toStation.getY(), 0.0, 0.0);
+
+        modelAndView.addObject("destination", distance);
+        modelAndView.addObject("price", calculatePrice(distance));
+        modelAndView.setViewName("route");
         return modelAndView;
+    }
+
+    /**
+     * https://stackoverflow.com/a/16794680/5107656
+     *
+     * Calculate distance between two points in latitude and longitude taking
+     * into account height difference. If you are not interested in height
+     * difference pass 0.0. Uses Haversine method as its base.
+     *
+     * lat1, lon1 Start point lat2, lon2 End point el1 Start altitude in meters
+     * el2 End altitude in meters
+     * @returns Distance in Meters
+     */
+    private double distance(double lat1, double lat2, double lon1,
+                                  double lon2, double el1, double el2) {
+
+        final int R = 6371; // Radius of the earth
+
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+
+        double height = el1 - el2;
+
+        distance = Math.pow(distance, 2) + Math.pow(height, 2);
+
+        return Math.sqrt(distance);
+    }
+
+    private double calculatePrice(double distance) {
+
+        return 0.;
     }
 
     // Display forgotPassword page

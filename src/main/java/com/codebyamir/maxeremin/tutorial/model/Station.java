@@ -20,12 +20,12 @@ public class Station {
     //@NotEmpty(message = "Please provide a value for the station name")
     @Getter @Setter private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "route", joinColumns = { @JoinColumn(name = "start_station_id") }, inverseJoinColumns = { @JoinColumn(name = "stop_station_id") })
-    @Getter @Setter private Set<Station> startStations = new LinkedHashSet<>();
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "station_id")
+    @Getter @Setter private Station station;
 
-    @ManyToMany(mappedBy = "startStations")
-    @Getter @Setter private Set<Station> stopStations = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "station")
+    @Getter @Setter private Set<Station> closeStations = new LinkedHashSet<>();
 
     @Column(name = "x")
     @Getter @Setter private double x;

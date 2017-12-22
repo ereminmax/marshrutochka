@@ -21,4 +21,6 @@ public class StationService {
     public Iterable<Station> findAll() {
         return stationRepository.findAll();
     }
+
+    public Station findById(long id) {return stationRepository.findOne(id);}
 }

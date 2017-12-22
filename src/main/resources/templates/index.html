@@ -286,11 +286,11 @@
 				</div>
 				<div class="col-md-9 search-tours-col-bg-default">
 					<div class="container">
-						<form action="#" class="sky-form clearfix">
+						<form action="#" th:object="${route}" class="sky-form clearfix">
                             <div class="col col-3">
                                 <label class="label">Пункт отправления</label>
                                 <label class="select">
-                                    <select name="startPoint">
+                                    <select th:field="*{fromStationName}" name="startPoint">
                                         <option th:each="station : ${stationList}" value="0" th:value="${station.id}" th:text="${station.name}" selected>Reservation date</option>
                                     </select>
                                     <i></i>
@@ -300,7 +300,7 @@
                             <div class="col col-3">
                                 <label class="label">Пункт назначения</label>
                                 <label class="select">
-                                    <select name="endPoint">
+                                    <select th:field="*{toStationName}" name="endPoint">
                                         <option th:each="station : ${stationList}" value="0" th:value="${station.id}" th:text="${station.name}" selected>Reservation date</option>
                                     </select>
                                     <i></i>
@@ -311,7 +311,7 @@
 								<label class="label">Date</label>
 								<label class="input">
 									<span class="icon-append fa fa-calendar"></span>
-									<input type="text" name="start" id="start" placeholder="DD/MM/YYY">
+									<input th:field="*{time}" type="text" name="start" id="start" placeholder="DD/MM/YYY" required>
 								</label>
 							</div>
 
@@ -319,7 +319,7 @@
 								<label class="label">Persons</label>
 								<label class="input">
 									<span class="icon-append fa fa-users"></span>
-									<input type="text" placeholder="Number of persons">
+									<input th:field="*{numberOfSeats}" type="text" placeholder="Number of persons">
 								</label>
 							</div>
 

@@ -36,21 +36,21 @@ public class TutorialApplication implements CommandLineRunner{
 		Station stationC = new Station("Энгельсский пляж", 51.502045, 46.1038253);
 		Station stationD = new Station("ТК Мой Новый", 51.5071535, 45.9761751);
 
-		stationA.getStartStations().add(stationB);
-		stationA.getStartStations().add(stationC);
-		stationA.getStartStations().add(stationD);
+		stationA.getCloseStations().add(stationB);
+		stationA.getCloseStations().add(stationC);
+		stationA.getCloseStations().add(stationD);
 
-		stationB.getStartStations().add(stationA);
-		stationB.getStartStations().add(stationC);
-		stationB.getStartStations().add(stationD);
+		stationB.getCloseStations().add(stationA);
+		stationB.getCloseStations().add(stationC);
+		stationB.getCloseStations().add(stationD);
 
-		stationC.getStartStations().add(stationA);
-		stationC.getStartStations().add(stationB);
-		stationC.getStartStations().add(stationD);
+		stationC.getCloseStations().add(stationA);
+		stationC.getCloseStations().add(stationB);
+		stationC.getCloseStations().add(stationD);
 
-		stationD.getStartStations().add(stationA);
-		stationD.getStartStations().add(stationB);
-		stationD.getStartStations().add(stationC);
+		stationD.getCloseStations().add(stationA);
+		stationD.getCloseStations().add(stationB);
+		stationD.getCloseStations().add(stationC);
 
 		stationService.saveStations(new LinkedHashSet<Station>(){{
 			add(stationA);
