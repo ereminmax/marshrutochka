@@ -6,12 +6,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.*;
 
 @Data
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,4 +50,12 @@ public class User {
 
     @Column(name = "reset_token")
     private String resetToken;
+
+    @Column(name = "stripe_customer_id")
+    private String stripeCustomerId;
+
+    /*@ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;*/
+    private String role;
 }

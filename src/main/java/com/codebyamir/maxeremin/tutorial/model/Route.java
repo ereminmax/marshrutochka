@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,6 +28,18 @@ public class Route {
     @Column(name = "number_of_seats")
     private int numberOfSeats = 1;
 
+    @Column(name = "luggage")
+    private int luggage = 1;
+
+    @Column(name = "coupon")
+    private String coupon;
+
+    @Column(name = "date")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private Date date = new Date(new Date().getTime());
+
     @Column(name = "time")
-    private Date time = getTime();
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date time = new Date(new Date().getTime());
+
 }

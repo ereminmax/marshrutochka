@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Детали маршрута и оплата</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/shop.style.css">
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="assets/css/headers/header-v5.css">
+	<link rel="stylesheet" href="assets/css/footers/footer-v4.css">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="assets/stripe/stripe.css">
+	<link rel="stylesheet" href="assets/plugins/animate.css">
+	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/jquery-steps/css/custom-jquery.steps.css">
+	<link rel="stylesheet" href="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+
+	<!-- Style Switcher -->
+	<link rel="stylesheet" href="assets/css/plugins/style-switcher.css">
+
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="assets/css/theme-colors/default.css" id="style_color">
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="assets/css/custom.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+<body class="header-fixed">
+
+	<div class="wrapper">
+		<!--=== Header v5 ===-->
+		<div class="header-v5 header-static">
+			<!-- Topbar v3 -->
+			<div class="topbar-v3">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6">
+							<ul class="list-inline right-topbar pull-right">
+								<li><a href="logout.html" th:href="@{/logout}">Выйти</a></li>
+							</ul>
+						</div>
+					</div>
+				</div><!--/container-->
+			</div>
+			<!-- End Topbar v3 -->
+		</div>
+		<!--=== End Header v5 ===-->
+
+		<!--=== Breadcrumbs v4 ===-->
+		<div class="breadcrumbs-v4">
+			<div class="container">
+				<span class="page-name">Оплата</span>
+				<h1>Проверьте <span class="shop-green">детали</span> заказа</h1>
+
+			</div><!--/end container-->
+		</div>
+		<!--=== End Breadcrumbs v4 ===-->
+
+		<!--=== Content Medium Part ===-->
+		<div class="content-md margin-bottom-30">
+			<div class="container">
+
+
+
+				<form class="shopping-cart" action="#" th:action="@{/charge}" id="payment-form">
+					<div>
+						<div class="header-tags">
+							<div class="overflow-h">
+								<h2>Информация</h2>
+								<p>Проверьте детали поездки</p>
+								<i class="rounded-x fa fa-check"></i>
+							</div>
+						</div>
+						<section>
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Вид услуги</th>
+											<th>Детали</th>
+											<th>Цена</th>
+										</tr>
+									</thead>
+									<tbody th:object="${route}">
+										<tr>
+											<td class="product-in-table">
+												<img class="img-responsive" src="assets/img/thumb/bus.jpg" alt="">
+												<div class="product-it-in">
+													<h3>Поездка</h3>
+													<span>Стоимость заказа маршрутного такси, рассчитывается на основе пути</span>
+												</div>
+											</td>
+											<td th:text="${distance} + ' км'">10 км</td>
+											<td class="shop-red" th:text="${distancePrice} + &#8381;">100 руб</td>
+										</tr>
+										<tr>
+											<td class="product-in-table">
+												<img class="img-responsive" src="assets/img/thumb/seats.jpg" alt="">
+												<div class="product-it-in">
+													<h3>Пассажиры</h3>
+													<span>Путешествуйте большой компанией, это выгодно!</span>
+												</div>
+											</td>
+											<td th:text="${passengers} + ' мест'">1</td>
+											<td th:text="${percentBargain}==1 ? 'нет бонуса' : 'бонус: ' + ${percentBargain} + '%'" class="shop-red">10%</td>
+										</tr>
+										<tr>
+											<td class="product-in-table">
+												<img class="img-responsive" src="assets/img/thumb/luggage2.jpg" alt="">
+												<div class="product-it-in">
+													<h3>Багаж</h3>
+													<span>Заказывайте дополнительное место для своих покупок</span>
+												</div>
+											</td>
+											<td th:text="${luggage} + ' шт'">1</td>
+											<td th:text="${luggage}==1 ? 'БЕСПЛАТНО' : ${luggagePrice} + '&#8381;'" class="shop-red">$ 320.00</td>
+										</tr>
+										<tr>
+											<td class="product-in-table">
+												<img class="img-responsive" src="assets/img/thumb/coupon.jpg" alt="">
+												<div class="product-it-in">
+													<h3>Купон</h3>
+													<span>Используйте купоны</span>
+												</div>
+											</td>
+											<td th:text="*{coupon}">ILOVESUTNIK</td>
+											<td th:text="${coupon} ? ${coupon} + '%' : 'нет скидки'" class="shop-red">$ 320.00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</section>
+
+						<div class="header-tags">
+							<div class="overflow-h">
+								<h2>Оплата</h2>
+								<p>Выберите способ оплаты</p>
+								<i class="rounded-x fa fa-credit-card"></i>
+							</div>
+						</div>
+						<section>
+							<div class="row">
+								<div class="col-md-6 md-margin-bottom-50">
+									<h2 class="title-type">Введите данные карты</h2>
+									<!-- Accordion -->
+									<div class="accordion-v2">
+										<div class="panel-group" id="accordion">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+															<i class="fa fa-credit-card"></i>
+															Кредитная или дебетовая карта
+														</a>
+													</h4>
+												</div>
+
+												<div class="form-row">
+													<div id="card-element">
+														<!-- a Stripe Element will be inserted here. -->
+													</div>
+
+													<!-- Used to display form errors -->
+													<div id="card-errors" role="alert"></div>
+												</div>
+
+												<input type="hidden" name="amount" th:value="${totalPrice}" />
+
+												<!--<script
+														src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+														data-key="pk_test_QldfLR6TNPLKhwQj2kppYCNy"
+														data-amount="999"
+														data-name="Demo Site"
+														data-description="Widget"
+														data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+														data-locale="auto">
+												</script>-->
+											</div>
+										</div>
+									</div>
+									<!-- End Accordion -->
+								</div>
+							</div>
+						</section>
+
+						<div class="coupon-code">
+							<div class="row">
+								<div class="col-sm-3 col-sm-offset-5">
+									<ul class="list-inline total-result">
+										<li class="total-price">
+											<h4>Total:</h4>
+											<div class="total-result-in">
+												<span th:text="${totalPrice} + '&#8381;'">100&#8381;</span>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div><!--/end container-->
+		</div>
+		<!--=== End Content Medium Part ===-->
+
+
+
+		<!--=== Footer v4 ===-->
+		<div class="footer-v4">
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2018 &copy; Все права защищены.
+							</p>
+						</div>
+						<div class="col-md-6">
+							<ul class="list-inline sponsors-icons pull-right">
+								<li><a href="#"><i class="fab fa-stripe"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div><!--/copyright-->
+		</div>
+		<!--=== End Footer v4 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	<script src="assets/plugins/jquery/jquery.min.js"></script>
+	<script src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script src="assets/plugins/back-to-top.js"></script>
+	<script src="assets/plugins/smoothScroll.js"></script>
+	<script src="assets/plugins/jquery-steps/build/jquery.steps.js"></script>
+	<script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+	<!-- JS Customization -->
+	<script src="assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script src="assets/js/shop.app.js"></script>
+	<script src="assets/js/forms/page_login.js"></script>
+	<script src="assets/js/plugins/stepWizard.js"></script>
+	<script src="assets/js/forms/product-quantity.js"></script>
+	<script src="assets/js/plugins/style-switcher.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			App.init();
+			Login.initLogin();
+			App.initScrollBar();
+			StepWizard.initStepWizard();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+
+	<script src="https://js.stripe.com/v3/"></script>
+	<script>
+		// Create a Stripe client
+		var stripe = Stripe('');
+
+		// Create an instance of Elements
+		var elements = stripe.elements();
+
+		// Custom styling can be passed to options when creating an Element.
+		// (Note that this demo uses a wider set of styles than the guide below.)
+		var style = {
+		  base: {
+			color: '#32325d',
+			lineHeight: '18px',
+			fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+			fontSmoothing: 'antialiased',
+			fontSize: '16px',
+			'::placeholder': {
+			  color: '#aab7c4'
+			}
+		  },
+		  invalid: {
+			color: '#fa755a',
+			iconColor: '#fa755a'
+		  }
+		};
+
+		// Create an instance of the card Element
+		var card = elements.create('card', {style: style});
+
+		// Add an instance of the card Element into the `card-element` <div>
+		card.mount('#card-element');
+
+		// Handle real-time validation errors from the card Element.
+		card.addEventListener('change', function(event) {
+		  var displayError = document.getElementById('card-errors');
+		  if (event.error) {
+			displayError.textContent = event.error.message;
+		  } else {
+			displayError.textContent = '';
+		  }
+		});
+
+		// Handle form submission
+		var form = document.getElementById('payment-form');
+		form.addEventListener('submit', function(event) {
+		  event.preventDefault();
+
+		  stripe.createToken(card).then(function(result) {
+			if (result.error) {
+			  // Inform the user if there was an error
+			  var errorElement = document.getElementById('card-errors');
+			  errorElement.textContent = result.error.message;
+			} else {
+			  // Send the token to your server
+			  stripeTokenHandler(result.token);
+			}
+		  });
+		});
+	</script>
+
+<!--[if lt IE 9]>
+	<script src="assets/plugins/respond.js"></script>
+	<script src="assets/plugins/html5shiv.js"></script>
+	<script src="assets/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+	<![endif]-->
+<!--[if lt IE 10]>
+	<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+	<![endif]-->
+
+</body>
+</html>

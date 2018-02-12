@@ -1,33 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="Amir Boroumand" />
-    <link rel="icon" href="favicon.ico" />
+    <title>Создание пароля</title>
 
-    <title>User Registration with Spring Boot</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="assets/plugins/animate.css">
+    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="assets/css/pages/page_log_reg_v2.css">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="assets/css/theme-skins/dark.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
 
     <!-- Bootstrap core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous" />
-
-    <link th:href="@{css/style.css}" rel="stylesheet" />
-    <link th:href="@{css/fv.css}" rel="stylesheet" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
-<body class="gray-bg">
-
-<div class="middle-box text-center loginscreen animated fadeInDown">
-    <div>
-
-        <hr />
-        <h4>Set Your Password</h4>
+<body>
+<!--=== Content Part ===-->
+<div class="container">
+    <!--Reg Block-->
+    <div class="reg-block">
 
         <div th:if="${successMessage}" class="alert alert-success"
              role="alert" th:text=${successMessage}></div>
@@ -38,50 +59,69 @@
         <div th:if="${invalidToken}" class="alert alert-danger"
              role="alert" th:text=${invalidToken}></div>
 
-        <form th:if="!${invalidToken}" class="m-t" id="passwordForm" role="form" action="#"
-              th:object="${setPassword}" th:action="@{/confirm}" method="post">
+        <form th:if="${invalidToken}" id="passwordForm" autocomplete="off" action="#" th:action="@{/confirm}"
+              th:object="${setPassword}" method="post" class="m-t" role="form"
+              >
 
             <input type="hidden" name="token" th:value=${confirmationToken}  >
 
-            <div class="form-group input-group">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-                <input name="password" type="password" id="password"
-                       placeholder="Password" class="form-control" required />
-                <span class="glyphicon"
-                      aria-hidden="true"></span>
+            <div class="reg-block-header">
+                <h2>Создайте пароль</h2>
             </div>
-
-            <div class="form-group input-group has-feedback">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-          </span>
-                <input type="password" class="form-control" id="signup-password-confirm" placeholder="Confirm Password" name="ConfirmPassword" data-fv-notempty="true"
-                       data-fv-notempty-message="Please confirm password"
+            <div class="input-group margin-bottom-20 form-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input name="password" type="password" id="password"
+                       class="form-control" placeholder="Пароль" required/>
+                <span class="glyphicon"
+                      aria-hidden="true">
+            </div>
+            <div class="input-group margin-bottom-30 form-group has-feedback">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="password" class="form-control" id="signup-password-confirm" placeholder="Введите пароль повторно" name="ConfirmPassword" data-fv-notempty="true"
+                       data-fv-notempty-message="Пожалуйста подтвердите пароль"
                        data-fv-identical="true"
                        data-fv-identical-field="password"
-                       data-fv-identical-message="Both passwords must be identical" />
-
+                       data-fv-identical-message="Оба пароля должны совпадать" />
                 <div class="help-block with-errors"></div>
             </div>
+            <hr>
 
-
-
-            <button type="submit"
-                    class="btn btn-primary block full-width m-b">Save
-            </button>
-
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button type="submit" class="btn-u btn-block">Подтвердить</button>
+                </div>
+            </div>
         </form>
-
-
     </div>
-</div>
+    <!--End Reg Block-->
+</div><!--/container-->
+<!--=== End Content Part ===-->
 
-<!-- jQuery-->
-<script
-        src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<!-- JS Customization -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script type="text/javascript" src="assets/js/app.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+		});
+	</script>
+<script type="text/javascript">
+		$.backstretch([
+			"assets/img/bg/19.jpg",
+			"assets/img/bg/18.jpg",
+			], {
+				fade: 1000,
+				duration: 7000
+			});
+</script>
 <!-- Bootstrap -->
 <script
         src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -94,7 +134,7 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 
-<script th:src="@{js/fv.min.js}"></script>
+<script th:src="@{assets/js/fv.min.js}"></script>
 <script>
 		$(document).ready(function() {
 		    $('#passwordForm').formValidation({
@@ -109,7 +149,7 @@
 		            password: {
 		                validators: {
 		                    notEmpty: {
-		                        message: 'The password is required'
+		                        message: 'Пароль обязателен'
 		                    },
 		                    callback: {
 		                        callback: function(value, validator, $field) {
@@ -120,7 +160,7 @@
 
 		                            var result  = zxcvbn(password),
 		                                score   = result.score,
-		                                message = result.feedback.warning || 'The password is weak';
+		                                message = result.feedback.warning || 'Пароль слабый';
 
 		                            // Update the progress bar width and add alert class
 		                            var $bar = $('#strengthBar');
@@ -163,9 +203,12 @@
 		        }
 		    });
 		});
-		</script>
-});
 </script>
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.js"></script>
+<script src="assets/plugins/html5shiv.js"></script>
+<script src="assets/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
 
 </body>
 </html>

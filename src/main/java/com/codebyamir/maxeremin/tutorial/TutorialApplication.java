@@ -1,7 +1,7 @@
 package com.codebyamir.maxeremin.tutorial;
 
-import com.codebyamir.maxeremin.tutorial.model.Station;
-import com.codebyamir.maxeremin.tutorial.service.StationService;
+import com.codebyamir.maxeremin.tutorial.model.*;
+import com.codebyamir.maxeremin.tutorial.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +18,9 @@ public class TutorialApplication implements CommandLineRunner{
 	@Autowired
 	private StationService stationService;
 
+	@Autowired
+	private UserService userService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(TutorialApplication.class, args);
 	}
@@ -25,6 +28,17 @@ public class TutorialApplication implements CommandLineRunner{
 	@Override
 	@Transactional
 	public void run(String... strings) throws Exception {
+
+		User user = new User();
+		user.setFirstName("Maxim");
+		user.setLastName("Eremin");
+		user.setEmail("test@test");
+		user.setPassword("password");
+		user.setId(0);
+		user.setEnabled(true);
+		user.setRole("USER");
+
+		userService.saveUser(user);
 
 		/*final StopStation stopStationA = new StopStation();
         final StopStation stopStationB = new StopStation();

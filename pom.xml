@@ -25,6 +25,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>4.4.0</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.nekohtml/nekohtml -->
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>

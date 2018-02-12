@@ -1,117 +1,112 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<title>Registration 1 | Unify - Responsive Website Template</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="User account registration" />
+    <meta name="author" content="Amir Boroumand" />
+    <link rel="icon" href="favicon.ico" />
 
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <title>Registration Page</title>
 
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous" />
 
-	<!-- Web Fonts -->
-	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
-
-	<!-- CSS Global Compulsory -->
-	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-
-	<!-- CSS Implementing Plugins -->
-	<link rel="stylesheet" href="assets/plugins/animate.css">
-	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-
-	<!-- CSS Page Style -->
-	<link rel="stylesheet" href="assets/css/pages/page_log_reg_v2.css">
-
-	<!-- CSS Theme -->
-	<link rel="stylesheet" href="assets/css/theme-colors/default.css" id="style_color">
-	<link rel="stylesheet" href="assets/css/theme-skins/dark.css">
-
-	<!-- CSS Customization -->
-	<link rel="stylesheet" href="assets/css/custom.css">
+    <link th:href="@{css/style.css}" rel="stylesheet" />
 </head>
 
-<body>
-	<!--=== Content Part ===-->
-	<div class="container">
-		<!--Reg Block-->
-		<div class="reg-block">
-			<div class="reg-block-header">
-				<h2>Sign Up</h2>
-				<p>Already Signed Up? Click <a class="color-green" href="page_login1.html">Sign In</a> to login your account.</p>
-			</div>
+<body class="gray-bg">
 
-			<div class="input-group margin-bottom-20">
-				<span class="input-group-addon"><i class="fa fa-user"></i></span>
-				<input type="text" class="form-control" placeholder="Username">
-			</div>
-			<div class="input-group margin-bottom-20">
-				<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-				<input type="text" class="form-control" placeholder="Email">
-			</div>
-			<div class="input-group margin-bottom-20">
-				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-				<input type="text" class="form-control" placeholder="Password">
-			</div>
-			<div class="input-group margin-bottom-30">
-				<span class="input-group-addon"><i class="fa fa-key"></i></span>
-				<input type="text" class="form-control" placeholder="Confirm Password">
-			</div>
-			<hr>
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
 
-			<div class="checkbox">
-				<label>
-					<input type="checkbox">
-					I read <a target="_blank" href="page_terms.html">Terms and Conditions</a>
-				</label>
-			</div>
+        <h4>New User Registration</h4>
 
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<button type="submit" class="btn-u btn-block">Register</button>
-				</div>
-			</div>
-		</div>
-		<!--End Reg Block-->
-	</div><!--/container-->
-	<!--=== End Content Part ===-->
+        <form autocomplete="off" action="#" th:action="@{/register}"
+              th:object="${user}" method="post" class="m-t" role="form"
+              data-toggle="validator">
 
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-	<script type="text/javascript" src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript" src="assets/js/custom.js"></script>
-	<!-- JS Page Level -->
-	<script type="text/javascript" src="assets/js/app.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			App.init();
-		});
-	</script>
-	<script type="text/javascript">
-		$.backstretch([
-			"assets/img/bg/19.jpg",
-			"assets/img/bg/18.jpg",
-			], {
-				fade: 1000,
-				duration: 7000
-			});
-	</script>
-<!--[if lt IE 9]>
-	<script src="assets/plugins/respond.js"></script>
-	<script src="assets/plugins/html5shiv.js"></script>
-	<script src="assets/plugins/placeholder-IE-fixes.js"></script>
-	<![endif]-->
+            <div th:if="${confirmationMessage}" class="alert alert-success"
+                 role="alert" th:text=${confirmationMessage}></div>
+
+            <div th:if="${errorMessage}"
+                 class="alert alert-danger" role="alert"
+                 th:text="${errorMessage}"></div>
+
+
+            <div th:if="${#fields.hasErrors('firstName')}"
+                 th:errors="*{firstName}"
+                 class="validation-message alert alert-danger" role="alert"></div>
+
+            <div th:if="${#fields.hasErrors('lastName')}"
+                 th:errors="*{lastName}"
+                 class="validation-message alert alert-danger" role="alert"></div>
+
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                 class="validation-message alert alert-danger" role="alert"></div>
+
+            <div class="form-group input-group has-feedback">
+                <label th:if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}" class="validation-message"></label>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+
+                <input type="text" th:field="*{firstName}"
+                       placeholder="First Name" class="form-control" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-user"></span>
+                  </span>
+                <input type="text" th:field="*{lastName}"
+                       placeholder="Last Name" class="form-control" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+                <input type="email" th:field="*{email}"
+                       placeholder="Email Address" class="form-control"
+                       data-error="This email address is invalid" required />
+                <span class="glyphicon form-control-feedback"
+                      aria-hidden="true"></span>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary block full-width m-b">Register</button>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- jQuery-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<!-- Bootstrap Validator plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
 
 </body>
+
 </html>
